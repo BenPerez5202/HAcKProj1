@@ -11,6 +11,37 @@ const App = () => {
     { name: 'scissors', emoji: '✂️' }
   ];
 
+  const getRandomChoice = () => {
+  return choices[Math.floor(Math.random() * choices.length)];
+};
+
+const determineWinner = (player, bot) => {
+  if (player.name === bot.name) return 'tie';
+  
+  const winConditions = {
+    rock: 'scissors',
+    paper: 'rock',
+    scissors: 'paper'
+  };
+  
+  return winConditions[player.name] === bot.name ? 'win' : 'lose';
+};
+
+const playGame = (playerChoice) => {
+  const botChoice = getRandomChoice();
+  const gameResult = determineWinner(playerChoice, botChoice);
+  
+  setPlayerChoice(playerChoice);
+  setBotChoice(botChoice);
+};
+
+// Update the button onClick
+<button
+  key={choice.name}
+  className="choice-button"
+  onClick={() => playGame(choice)}
+></button>
+
   return (
     <div className="game-container">
       <h1>Rock Paper Scissors</h1>
