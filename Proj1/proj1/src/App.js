@@ -1,29 +1,33 @@
-import logo from './sunflower.png';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-          
-        </a>
+const App = () => {
+  const [playerChoice, setPlayerChoice] = useState(null);
+  const [botChoice, setBotChoice] = useState(null);
 
-        <button>Hello!</button>
-        
-      </header>
+  const choices = [
+    { name: 'rock', emoji: '🪨' },
+    { name: 'paper', emoji: '📄' },
+    { name: 'scissors', emoji: '✂️' }
+  ];
+
+  return (
+    <div className="game-container">
+      <h1>Rock Paper Scissors</h1>
+      
+      <div className="buttons-container">
+        {choices.map((choice) => (
+          <button
+            key={choice.name}
+            className="choice-button"
+          >
+            <span className="choice-emoji">{choice.emoji}</span>
+            <span className="choice-name">{choice.name}</span>
+          </button>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
